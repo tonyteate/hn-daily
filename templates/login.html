@@ -1,0 +1,49 @@
+{% extends "template.html" %}
+{% block body %}
+<center><h3 style="margin-bottom:10px">Sign In</h3>
+<form method="post">
+    <table>
+        <tr>
+            <td></td>
+            <td>
+                {% if redir %}
+                <div style="width:170px" class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    You either need to login, or check your email to verify your account before you can do that : )
+                </div>    
+                {% endif %}   
+            </td>
+        </tr>       
+        <tr>
+            <td></td>
+            <td>
+                {% if error %}
+                <div style="width:170px" class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{error}}
+                </div>    
+                {% endif %}   
+            </td>
+        </tr>        
+        <tr>
+            <td align="right">
+                Username&nbsp;
+            </td>
+            <td>
+                <input type="text" name="username" value="{{username}}">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Password&nbsp;
+            </td>
+            <td>
+                <input type="password" name="password">
+            </td>
+        </tr>
+        <table>
+            <input class="btn btn-primary" type="submit" name="submit" value="Connect">
+        </table>        
+    </table>
+</form></center>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <title>Preview</title>
+        <link type="text/css" href="/static/bootstrap.css" rel="stylesheet">
+	    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	    <script type="text/javascript" src="/static/bootstrap-alert.js"></script>	        
+        <script>
+			$(document).ready(function(){
+		        $(".alert").alert();
+			});
+        </script>
+        <style>
+        	a:link {text-decoration: none} 
+			a:visited {text-decoration: none} 
+			a:active {text-decoration: none} 
+			a:hover {text-decoration: none; font-weight: bold}
+        </style>
+
+        {% block head %}{% endblock %}
+    </head>
+
+	<body style="background-color:#ffffff;">
+
+	    <div class="container" style="height:1em; position:relative;">
+
+	    	<div style="height:1em; position:absolute; top:; left:0px;">
+        		<span style=""><a href="/"> Hacker News Daily </a></span>
+	        </div>            
+
+	        <div style="height:1em; position:absolute; top:; right:0px;">
+	    		Yo Bro
+            </div> 
+
+	    </div>
+
+	    <hr style="margin-top:0px">
+
+        <div class="container">
+        {% block body %}{% endblock %}
+	    </div>    
+    </body>    
+</html>

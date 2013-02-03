@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block header_menu %}
+{% if user and message.sender == user.eid %}
+<span> | </span>
+<span>
+    <a href="/{{message.eid}}/_edit"> Edit </a>
+</span>
+{% endif %}
+{% if user and message.recip == user.eid %}
+<span> | </span>
+<span>
+    <a href="/{{message.eid}}/_unread"> Mark Unread </a>
+</span>
+<span> | </span>
+<span>
+    <a href="/{{message.eid}}/_delete"> Throw Away </a>
+</span>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<table style="margin:auto; width:50%">
+    <tr>
+        <th style="float:left; font-size:12px; margin-bottom:10px">{{message.content[:10]+'...'}} from <em>{{message.exchange_id(message.sender, True)}}</em></th>
+        <td style="margin-bottom:10px">{{message.lastmodified.strftime('%b %d, %Y')}}</td>
+    </tr>
+    <tr>
+      <td>{{message.content.replace('\n','<br>')}}</td>
+      <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input class="btn btn-primary" type="submit" name="reply" value="Reply &raquo;">
+    </tr>
+</table>
+{% endblock %}

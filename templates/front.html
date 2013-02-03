@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<table style="margin:auto; width:50%">
+{% for message in messages %}
+    <tr>
+        <td style="float:left; font-size:12px;{% if message.unread and message.recip == user.eid %} font-weight:bold;{% endif %}"><a href="/{{message.eid}}">{{message.content[:10]+'...'}} (#{{message.eid}})</a></th>
+        <td style="float:right">{{message.lastmodified.strftime('%b %d, %Y at %I:%M ')+message.lastmodified.strftime('%p').lower()}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

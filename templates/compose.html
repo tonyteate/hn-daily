@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+
+<center>
+
+<h3>Compose</h3>
+
+{% if error %}
+<div style="width:250px; margin-top:10px" class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {{error}}
+</div>    
+{% endif %}   
+
+<form method="post" enctype="multipart/form-data" style="width:310px">
+
+    <div style="float:left"><b>To</b></div>
+    <input style="width:300px" type="text" name="recip" value="{{recip}}" 
+    {% if editing %}readonly{% endif %} />
+
+    <div style="float:left"><b>Message</b></div>
+    <textarea name="content" style="width:300px;height:100px">{{content}}</textarea>  
+
+    <div>
+        <input style="float:right; margin-top:0px" class="btn btn-primary" type="submit" value="Send &raquo;">
+    </div>
+    
+</form>
+</center>
+{% endblock %}
