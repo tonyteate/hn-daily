@@ -1,4 +1,4 @@
 cron:
-- description: get hn frontpage news
-  url: /getnews
-  schedule: every 10 minutes synchronized
+# - description: get hn frontpage news
+#   url: /getnews
+#   schedule: every 10 minutes synchronized

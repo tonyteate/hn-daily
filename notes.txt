@@ -2,12 +2,17 @@ References
 http://api.ihackernews.com/
 
 ToDo
+post properties should be overwritten not ignored (e.g. points, comments)
+design (mimic HN)
+custom date/time ranges -> user accounts
+
 add source backup (http://hndroidapi.appspot.com/#homepage)
+possible source backup (https://github.com/Boxyco/hackernews-api)
 
 
 Progress
 
-1:30am-2:00am?
+(12:00)1:30am-2:00am?
 start						
 
 4:03am

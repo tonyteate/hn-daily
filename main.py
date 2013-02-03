@@ -34,7 +34,7 @@ class Post(ndb.Model):
     comments = ndb.IntegerProperty(required = True)
     points = ndb.IntegerProperty(required = True)
     ago = ndb.StringProperty(required = False)
-    by = ndb.StringProperty(required = True)
+    by = ndb.StringProperty(required = False)
 
     created = ndb.DateTimeProperty(auto_now_add = True, required = True)
     lastmodified = ndb.DateTimeProperty(auto_now = True)
@@ -74,8 +74,7 @@ class Handler(webapp2.RequestHandler):
 class MainPage(Handler):
     
     def render_front(self):
-        #self.render("front.html")
-        
+
         now = datetime.now()
         hour = now.hour
         delta = 12
@@ -84,13 +83,16 @@ class MainPage(Handler):
         logging.error(hour_range)
 
         sets = list( Set.query(Set.day==now.day, Set.hour.IN(hour_range)) )
+        
         posts_eids = []
         [posts_eids.extend(s.eids) for s in sets]
         posts_eids = list(set(posts_eids))
 
         logging.error(posts_eids)
 
-        posts = list(Post.query(Post.eid.IN(posts_eids)).order(-Post.points))
+        posts = []
+        if posts_eids:
+            posts = list(Post.query(Post.eid.IN(posts_eids)).order(-Post.points))
 
         self.render("front.html", posts=posts)
 
@@ -138,6 +140,13 @@ class GetNewsHandler(Handler):
                 ndb.put_multi(new_posts)
 
 
+class ClearAllHandler(Handler):
+
+    def get(self):
+        while Post.query().count() > 0:
+            keys = Post.query().fetch(1000, keys_only=True)
+            ndb.delete_multi(keys)
+
 class SampleNewsHandler(Handler):
 
     def get(self):
@@ -153,6 +162,7 @@ class WelcomeHandler(Handler):
 app = webapp2.WSGIApplication([ ('/(/?\.json)?', MainPage),
                                 ('/getnews', GetNewsHandler),
                                 ('/samplenews', SampleNewsHandler),
+                                ('/clearall', ClearAllHandler),
                                 ], debug=True)
 
 
