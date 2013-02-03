@@ -1,0 +1,14 @@
+References
+http://api.ihackernews.com/
+
+ToDo
+add source backup (http://hndroidapi.appspot.com/#homepage)
+
+
+Progress
+
+1:30am-2:00am?
+start						
+
+4:03am
+basic implementation w/o cron job
