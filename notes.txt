@@ -2,7 +2,7 @@ References
 http://api.ihackernews.com/
 
 ToDo
-design (mimic HN)
+pageviews
 'since' Cookie
 	custom date/time ranges -> user accounts
 fix "/comments/5161302" 
@@ -27,6 +27,9 @@ added clear all handler, before 10am mandate
 
 02-03-13 
 basic implementation w/ cron job, 10am mandate		~1.5 hours
-
-02-03-13
 update Post properties					~1 hour
+design (mimc HN)					~2.5 hours
+
+
+
+
