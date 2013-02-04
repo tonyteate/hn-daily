@@ -49,6 +49,9 @@ class Set(ndb.Model):
     hour = ndb.IntegerProperty(required = True)
     minute = ndb.IntegerProperty(required = True)    
 
+    date = ndb.DateTimeProperty(required = True) #no minute, no second, no microsecond
+    created = ndb.DateTimeProperty(auto_now_add = True, required = True)    
+
 class Handler(webapp2.RequestHandler):
 
     def write(self, *a, **kw):
@@ -75,20 +78,32 @@ class MainPage(Handler):
     
     def render_front(self):
 
-        now = datetime.now()
-        hour = now.hour
-        delta = 12
-        
-        hour_range = [(now-timedelta(hours=h)).hour for h in range(delta+1)]
-        logging.error(hour_range)
+        now = datetime.utcnow()
+        logging.error("NOW: %s" %now)
 
-        sets = list( Set.query(Set.day==now.day, Set.hour.IN(hour_range)) )
-        
+        ref_hour = 15 #10AM ET
+        ref = datetime(year=now.year, month=now.month, day=now.day, 
+                        hour=ref_hour, minute=now.minute, second=now.second, microsecond=now.microsecond)
+
+        delta = now - ref
+        if delta.days < 0:
+            ref = ref - timedelta(days=1)          
+
+        delta_hours = (now - ref).seconds / 3600 #float?
+        delta_range = [(now-timedelta(hours=h)).replace(minute=0, second=0, microsecond=0) for h in range(delta_hours+1)]
+
+        logging.error(delta_range)
+
+        sets = Set.query(Set.date.IN(delta_range))
+        sets = list(sets)
+
+        logging.error(len(sets))
+
         posts_eids = []
         [posts_eids.extend(s.eids) for s in sets]
         posts_eids = list(set(posts_eids))
 
-        logging.error(posts_eids)
+        #logging.error(posts_eids)
 
         posts = []
         if posts_eids:
@@ -112,7 +127,7 @@ class GetNewsHandler(Handler):
             posts = data.get('items')
 
             if posts:
-                now = datetime.now()
+                now = datetime.utcnow()
 
                 new_posts = []
                 for post in posts:
@@ -125,8 +140,10 @@ class GetNewsHandler(Handler):
 
                 new_posts_ids = [new_post.eid for new_post in new_posts]
 
+                set_dt = datetime(now.year, now.month, now.day, now.hour, 0, 0, 0)
+
                 s = Set(eids=new_posts_ids, day=now.day, month=now.month, year=now.year, 
-                        hour=now.hour, minute=now.minute).put()
+                        hour=now.hour, minute=now.minute, date=set_dt).put()
 
                 same_posts = list(Post.query(Post.eid.IN(new_posts_ids)))
                 same_posts_ids = [same_post.eid for same_post in same_posts]
@@ -145,7 +162,18 @@ class ClearAllHandler(Handler):
     def get(self):
         while Post.query().count() > 0:
             keys = Post.query().fetch(1000, keys_only=True)
+            num = len(keys)
             ndb.delete_multi(keys)
+            logging.error("%s Post objects deleted" %num)
+        logging.error("I just deleted some Post stuff....")
+
+        while Set.query().count() > 0:
+            keys = Set.query().fetch(1000, keys_only=True)
+            num = len(keys)
+            ndb.delete_multi(keys)
+            logging.error("%s Set objects deleted" %num)      
+        logging.error("I just deleted some Set stuff....")
+
 
 class SampleNewsHandler(Handler):
 

@@ -12,8 +12,15 @@ possible source backup (https://github.com/Boxyco/hackernews-api)
 
 Progress
 
-(12:00)1:30am-2:00am?
+02-02-13 (12:00)1:30am-2:00am?
 start						
 
-4:03am
+02-02-13 4:03am
 basic implementation w/o cron job
+
+02-03-13 5pm/6pm
+added clear all handler, before 10am mandate
+
+02-03-13 
+basic implementation w/ cron job, 10am mandate		~1.5 hours
+
