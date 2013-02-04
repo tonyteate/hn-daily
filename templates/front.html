@@ -8,8 +8,8 @@
 <table style="margin:auto; width:50%">
 {% for post in posts %}
     <tr>
-        <td style="float:left; font-size:12px;"><a href="#">{{post.title}}</td>
-        <td style="float:left; font-size:12px;"><a href="#">{{post.points}}</td>
+        <td style="float:left; font-size:12px;"><a href="{{post.url}}">{{loop.index}} {{post.title}}</a></td>
+        <td style="float:left; font-size:12px;">{{post.points}}</td>
     </tr>
 {% endfor %}
 </table>

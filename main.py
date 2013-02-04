@@ -1,4 +1,3 @@
- 
 import webapp2
 import json
 #import re
@@ -150,9 +149,16 @@ class GetNewsHandler(Handler):
 
                 logging.error("SAME POSTS: %s" %len(same_posts))
 
-                new_posts = filter(lambda x: x.eid not in same_posts_ids, new_posts)
+                #update all Posts properties except key & created
+                new_posts_dict = dict(zip(new_posts_ids, new_posts))
+                for same_post in same_posts:
+                    sp = new_posts_dict[same_post.eid]
+                    sp.key = same_post.key
+                    sp.created = same_post.created
 
-                logging.error("NEW POSTS - SAME POSTS: %s" %len(new_posts))
+                #new_posts = filter(lambda x: x.eid not in same_posts_ids, new_posts)
+
+                logging.error("NEW POSTS - SAME POSTS: %s" %(len(new_posts)-len(same_posts))) #%len(new_posts))
 
                 ndb.put_multi(new_posts)
 

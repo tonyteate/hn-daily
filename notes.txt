@@ -2,9 +2,13 @@ References
 http://api.ihackernews.com/
 
 ToDo
-post properties should be overwritten not ignored (e.g. points, comments)
 design (mimic HN)
-custom date/time ranges -> user accounts
+'since' Cookie
+	custom date/time ranges -> user accounts
+fix "/comments/5161302" 
+	NEED TO RECREATE THIS ERROR
+	Post object has 'ago':None, 'by':None, 'id':0
+	Hash url -> id
 
 add source backup (http://hndroidapi.appspot.com/#homepage)
 possible source backup (https://github.com/Boxyco/hackernews-api)
@@ -12,10 +16,10 @@ possible source backup (https://github.com/Boxyco/hackernews-api)
 
 Progress
 
-02-02-13 (12:00)1:30am-2:00am?
+02-03-13 (12:00)1:30am-2:00am?
 start						
 
-02-02-13 4:03am
+02-03-13 4:03am
 basic implementation w/o cron job
 
 02-03-13 5pm/6pm
@@ -24,3 +28,5 @@ added clear all handler, before 10am mandate
 02-03-13 
 basic implementation w/ cron job, 10am mandate		~1.5 hours
 
+02-03-13
+update Post properties					~1 hour
