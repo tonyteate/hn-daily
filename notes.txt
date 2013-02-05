@@ -3,14 +3,18 @@ http://api.ihackernews.com/
 
 ToDo
 pageviews
+
 'since' Cookie
 	custom date/time ranges -> user accounts
+
+add source backup (http://hndroidapi.appspot.com/#homepage)
+fix Set redundancy via hashlib(?)
+
 fix "/comments/5161302" 
 	NEED TO RECREATE THIS ERROR
 	Post object has 'ago':None, 'by':None, 'id':0
 	Hash url -> id
 
-add source backup (http://hndroidapi.appspot.com/#homepage)
 possible source backup (https://github.com/Boxyco/hackernews-api)
 
 
@@ -28,7 +32,7 @@ added clear all handler, before 10am mandate
 02-03-13 
 basic implementation w/ cron job, 10am mandate		~1.5 hours
 update Post properties					~1 hour
-design (mimc HN)					~2.5 hours
+design (mimc HN)					~2.5 hours (1:30 AM)
 
 
 
