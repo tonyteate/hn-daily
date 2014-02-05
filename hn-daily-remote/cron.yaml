@@ -1,0 +1,8 @@
+cron:
+- description: get hn frontpage news
+  url: /getnews
+  schedule: every 20 minutes synchronized
+
+- description: keepalive
+  url: /keepalive
+  schedule: every 9 minutes synchronized
