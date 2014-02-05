@@ -62,6 +62,16 @@ polish hn design imitation				~10 hours total
 02-16-13
 total_seconds() fix					~0.2 hours
 
+02-05-14
+git directory restructure				~0.5 hours
+
+
+
+
+
+
+
+
 
 
 
