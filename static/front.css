@@ -39,3 +39,14 @@ a:visited { color:#828282; text-decoration:none; }
 
 pre { overflow: auto; padding: 2px; max-width:600px; }
 pre:hover {overflow:auto}
+
+table {
+white-space: normal;
+line-height: normal;
+font-weight: normal;
+font-size: medium;
+font-variant: normal;
+font-style: normal;
+color: -webkit-text;
+text-align: start;
+}

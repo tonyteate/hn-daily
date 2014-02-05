@@ -5,16 +5,19 @@
 
 {% block body %}
 
+
 <table style="margin:auto; background-color:#f6f6ef; width:85%" border="0" cellpadding="0" cellspacing="0">
     <tbody>
         <tr>
             <td bgcolor="#ff6600">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top:2px; padding-left:2px; padding-right:2px;">
+                <table style="margin-top:-3px; margin-bottom:-3px; padding:2px" border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tbody>
                         <tr>
-                            <td style="width:18px;padding-right:4px"><a href="/"><img src="/static/images/logo18.png" width="18" height="18" style="border:1px #ffffff solid;" /></a></td>
-                            <td style="line-height:12pt; height:10px;"><span class="pagetop"><b><a href="http://news.ycombinator.com/news">Hacker News Daily</a></b></td>
-                            <td style="text-align:right;padding-right:4px;"><span class="pagetop"><a href="http://news.ycombinator.com/user?id=tonyteate">by tonyteate&nbsp;(2.7M)&nbsp;</a>|&nbsp;<a style="padding-right:3px" href="#">about</a></span></td>
+                            <td style="width:18px; padding-right:4px; padding-top:3px"><a href="/"><img src="/static/images/logo18.png" style="border:1px #ffffff solid;" /></a></td>
+
+                            <td style="line-height:; height:10px;"><span class="pagetop"><b><a href="/">Hacker News Daily</a></b></td>
+
+                            <td style="height:10px; text-align:right;padding-right:4px;"><span class="pagetop"><a href="http://news.ycombinator.com/user?id=tonyteate">by tonyteate&nbsp;({{req_count}})&nbsp;</a>|&nbsp;<a style="padding-right:0px; margin-right:px" href="#">about</a></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -31,7 +34,7 @@
                             <td>
                                 <img src="/static/images/myarrow.gif" border="0" style="padding-right:2px; padding-left:2px">
                             </td>
-                            <td class="title"><a href="{{post.url}}">{{post.title}}</a><span class="comhead"> (-_-) </span></td>
+                            <td class="title"><a href="{{post.url}}">{{post.title}}</a><span class="comhead"> {%if post.domain %}{{(post.domain)}}{% endif %} </span></td>
                         </tr>
                         <tr>
                             <td colspan="2"></td>
@@ -46,6 +49,7 @@
         <tr style="height:30px"></tr>        
     </tbody>
 </table>
+
 <div style="height:50px"></div>
 
 

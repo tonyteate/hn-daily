@@ -1,8 +1,13 @@
 References
 http://api.ihackernews.com/
 
+
+
+
 ToDo
+
 pageviews
+google analytics
 
 'since' Cookie
 	custom date/time ranges -> user accounts
@@ -10,12 +15,23 @@ pageviews
 add source backup (http://hndroidapi.appspot.com/#homepage)
 fix Set redundancy via hashlib(?)
 
+animated real-time favicon
 fix "/comments/5161302" 
 	NEED TO RECREATE THIS ERROR
 	Post object has 'ago':None, 'by':None, 'id':0
 	Hash url -> id
 
 possible source backup (https://github.com/Boxyco/hackernews-api)
+http://www.hnsearch.com/api
+
+
+
+
+
+Future
+
+http://news.ycombinator.com/item?id=5170182
+
 
 
 Progress
@@ -33,6 +49,19 @@ added clear all handler, before 10am mandate
 basic implementation w/ cron job, 10am mandate		~1.5 hours
 update Post properties					~1 hour
 design (mimc HN)					~2.5 hours (1:30 AM)
+
+02-05-13 to 02-07-13
+split into hn-daily & hn-daily-remote
++ flush handler
++ keep alive cron job (will probably take this out)
+(-_-)
+polish hn design imitation				~10 hours total
+
+……?
+
+02-16-13
+total_seconds() fix					~0.2 hours
+
 
 
 
