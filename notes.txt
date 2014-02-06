@@ -1,12 +1,12 @@
 References
 http://api.ihackernews.com/
-
+https://github.com/inorganik/countUp.js
+http://stackoverflow.com/q/2692323
 
 
 
 ToDo
 
-pageviews
 google analytics
 
 'since' Cookie
@@ -64,8 +64,8 @@ total_seconds() fix					~0.2 hours
 
 02-05-14
 git directory restructure				~0.5 hours
-
-
+page views						~0.5 hours
+some cleanup
 
 
 

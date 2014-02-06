@@ -1,6 +1,21 @@
 {% extends "template.html" %}
 
 {% block head %}
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+       
+        var numAnim = new countUp("requestcount", 0, {{req_count}}, 0, 2);
+        numAnim.start(function(){
+            setTimeout(function(){
+                $('#requestcount').text(n2shjs({{req_count}}, 1));                
+            }, 750);
+        });
+
+    });
+
+</script>
 {% endblock %}
 
 {% block body %}
@@ -17,7 +32,7 @@
 
                             <td style="line-height:; height:10px;"><span class="pagetop"><b><a href="/">Hacker News Daily</a></b></td>
 
-                            <td style="height:10px; text-align:right;padding-right:4px;"><span class="pagetop"><a href="http://news.ycombinator.com/user?id=tonyteate">by tonyteate&nbsp;({{req_count}})&nbsp;</a>|&nbsp;<a style="padding-right:0px; margin-right:px" href="#">about</a></span></td>
+                            <td style="height:10px; text-align:right;padding-right:4px;"><span class="pagetop"><a href="http://news.ycombinator.com/user?id=tonyteate">by tonyteate&nbsp;(<span id="requestcount">{{req_count}}</span>)&nbsp;</a>|&nbsp;<a id="aboutanchor" style="padding-right:0px; margin-right:px" href="#">about</a></span></td>
                         </tr>
                     </tbody>
                 </table>

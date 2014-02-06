@@ -49,7 +49,8 @@ class MainPage(Handler):
 
     def get(self):
 
-        req_count = 2.7e6#memcache.get(mem_count)
+        # req_count = int(2.7e6) #memcache.get(mem_count)
+        req_count = memcache.get(mem_count)
         if not req_count:
             req_count = 1
         else:
@@ -75,7 +76,7 @@ class MainPage(Handler):
         jdata = json.loads(content)
         posts = jdata.get('items')
 
-        self.render_front(posts=posts, req_count=n2sh(req_count))
+        self.render_front(posts=posts, req_count=req_count)
 
 class FlushHandler(Handler):
 
