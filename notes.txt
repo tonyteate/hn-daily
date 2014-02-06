@@ -1,11 +1,11 @@
-References
+  References
 http://api.ihackernews.com/
 https://github.com/inorganik/countUp.js
 http://stackoverflow.com/q/2692323
 
 
 
-ToDo
+To Do
 
 google analytics
 
@@ -67,8 +67,11 @@ git directory restructure				~0.5 hours
 page views						~0.5 hours
 some cleanup
 
-
-
+02-05-06-14
+about dialog
+no countUp commas					~3 hours total
+added token to flush handler				~0.2 hours
+up arrow margin update to match reference		~0.3 hours
 
 
 

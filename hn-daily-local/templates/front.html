@@ -6,11 +6,11 @@
     $(document).ready(function(){
 
        
-        var numAnim = new countUp("requestcount", 0, {{req_count}}, 0, 2);
+        var numAnim = new countUp("requestcount", 0, {{req_count}}, 0, 1.5);
         numAnim.start(function(){
-            setTimeout(function(){
-                $('#requestcount').text(n2shjs({{req_count}}, 1));                
-            }, 750);
+            // setTimeout(function(){
+            //     $('#requestcount').text(n2shjs({{req_count}}, 1));                
+            // }, 750);
         });
 
     });
@@ -19,6 +19,29 @@
 {% endblock %}
 
 {% block body %}
+
+<div class="modal fade" id="myModal" style="display:none">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float:right">&times;</button>
+        <h4 class="modal-title">About Hacker News Daily</h4>        
+        <p>
+            Hey. Thanks for stopping by.
+        </p>
+        <p>
+            Hacker News Daily is a daily collection of all of the stories that have reached the homepage of Hacker News since the morning (currently 10:00am ET or 15:00 UTC).
+        </p>
+        <p>
+            I hope this page serves as a simple and useful resource for keeping up with front page stories, especially the ones you may have missed throughout the day.
+        </p>
+        <p>
+            <h5>Special thanks to <a href="https://twitter.com/ronnieroller" target="_blank">@ronnieroller</a> for the <a href="http://api.ihackernews.com/" target="_blank">unofficial Hacker News API</a></h5>
+        </p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <table style="margin:auto; background-color:#f6f6ef; width:85%" border="0" cellpadding="0" cellspacing="0">
@@ -32,7 +55,7 @@
 
                             <td style="line-height:; height:10px;"><span class="pagetop"><b><a href="/">Hacker News Daily</a></b></td>
 
-                            <td style="height:10px; text-align:right;padding-right:4px;"><span class="pagetop"><a href="http://news.ycombinator.com/user?id=tonyteate">by tonyteate&nbsp;(<span id="requestcount">{{req_count}}</span>)&nbsp;</a>|&nbsp;<a id="aboutanchor" style="padding-right:0px; margin-right:px" href="#">about</a></span></td>
+                            <td style="height:10px; text-align:right;padding-right:4px;"><span class="pagetop"><a href="http://news.ycombinator.com/user?id=tonyteate">by tonyteate&nbsp;(<span id="requestcount">{{req_count}}</span>)&nbsp;</a>|&nbsp;<a id="aboutanchor" style="padding-right:0px; margin-right:px" data-toggle="modal" href="#myModal">about</a></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -47,7 +70,7 @@
                         <tr>
                             <td align="right" valign="top" class="title">{{loop.index}}.</td>
                             <td>
-                                <img src="/static/images/myarrow.gif" border="0" style="padding-right:2px; padding-left:2px">
+                                <img src="/static/images/myarrow.gif" border="0" style="padding-right:2px; padding-left:2px; margin-bottom:6px">                         
                             </td>
                             <td class="title"><a href="{{post.url}}">{{post.title}}</a><span class="comhead"> {%if post.domain %}{{(post.domain)}}{% endif %} </span></td>
                         </tr>

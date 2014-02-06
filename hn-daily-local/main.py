@@ -83,6 +83,13 @@ class FlushHandler(Handler):
     # should probably be a POST w/ Authentication
     def get(self):
 
+        token = self.request.get("token")
+
+        if not token:
+            return
+        elif token != "Pn67W1NpbCH38UlMBznYmeuPico3cdQ8":
+            return
+
         memcache.delete(mem_key)
 
 

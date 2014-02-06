@@ -4,6 +4,7 @@ import os
 import logging
 from datetime import datetime, timedelta
 from urlparse import urlparse
+import urllib
 
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
@@ -85,8 +86,10 @@ class GetNewsHandler(webapp2.RequestHandler):
                 #new_posts = filter(lambda x: x.eid not in same_posts_ids, new_posts)
 
                 if len(new_posts) - len(same_posts) > 0:
-                    # should probably be a POST w/ Authentication
-                    urlfetch.fetch(url=flushnewsurl, headers={'User-Agent': 'Mozilla/5.0'})                   
+                    # should probably be a POST
+                    params = urllib.urlencode({'token':'Pn67W1NpbCH38UlMBznYmeuPico3cdQ8'})
+                    url = flushnewsurl+'?%s'%params
+                    urlfetch.fetch(url=url, headers={'User-Agent': 'Mozilla/5.0'})
 
                 logging.error("NEW POSTS - SAME POSTS: %s" %(len(new_posts)-len(same_posts))) #%len(new_posts))
 
@@ -180,11 +183,12 @@ class WelcomeHandler(webapp2.RequestHandler):
                     
 
 
+
 app = webapp2.WSGIApplication([ ('/', WelcomeHandler),
                                 ('/keepalive', KeepAliveHandler),
                                 ('/getnews', GetNewsHandler),
                                 ('/samplenews', SampleNewsHandler),
-                                ('/clearall', ClearAllHandler),
+                                # ('/clearall', ClearAllHandler),
                                 ('/page', PageHandler),                                
                                 ], debug=True)
 
