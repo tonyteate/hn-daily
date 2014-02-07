@@ -7,8 +7,6 @@ http://stackoverflow.com/q/2692323
 
 To Do
 
-google analytics
-
 'since' Cookie
 	custom date/time ranges -> user accounts
 
@@ -76,8 +74,11 @@ up arrow margin update to match reference		~0.3 hours
 02-06-14
 memcache requestcount reset fix				~1.5 hours
 
+02-07-14
+google analytics
+about contact info					~0.5 hours total
 
-
+-> Posted to Hacker News
 
 
 
