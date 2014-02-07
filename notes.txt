@@ -73,6 +73,9 @@ no countUp commas					~3 hours total
 added token to flush handler				~0.2 hours
 up arrow margin update to match reference		~0.3 hours
 
+02-06-14
+memcache requestcount reset fix				~1.5 hours
+
 
 
 

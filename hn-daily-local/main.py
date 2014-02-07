@@ -6,6 +6,7 @@ import jinja2
 import logging
 from datetime import datetime, timedelta
 from n2sh import n2sh
+import random
 
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
@@ -18,6 +19,52 @@ getnewsurl = "http://hn-daily-remote.appspot.com/page"
 
 mem_key = 'hackernews'
 mem_count = 'requestcount'
+
+
+
+
+#https://developers.google.com/appengine/articles/sharding_counters
+NUM_SHARDS = 20
+
+class SimpleCounterShard(ndb.Model):
+    """Shards for the counter"""
+    count = ndb.IntegerProperty(default=0)
+
+def get_count():
+    """Retrieve the value for a given sharded counter.
+
+    Returns:
+        Integer; the cumulative count of all sharded counters.
+    """
+    total = memcache.get(mem_count)
+    if total is None:
+        total = 0
+        for counter in SimpleCounterShard.query():
+            total += counter.count
+        memcache.set(mem_count, total)
+    return total
+
+def increment_counter():
+
+    """Increment the value for a given sharded counter."""
+
+    @ndb.transactional
+    def increment():
+        shard_string_index = str(random.randint(0, NUM_SHARDS - 1))
+        counter = SimpleCounterShard.get_by_id(shard_string_index)
+        if counter is None:
+            counter = SimpleCounterShard(id=shard_string_index)
+        counter.count += 1
+        counter.put()
+
+    increment()
+
+    if memcache.get(mem_count) is None:
+        get_count()
+    memcache.incr(mem_count)
+
+
+
 
 class Handler(webapp2.RequestHandler):
 
@@ -49,13 +96,10 @@ class MainPage(Handler):
 
     def get(self):
 
-        # req_count = int(2.7e6) #memcache.get(mem_count)
+        increment_counter()
         req_count = memcache.get(mem_count)
-        if not req_count:
+        if req_count is None: #shouldn't really happen
             req_count = 1
-        else:
-            req_count = req_count + 1
-        memcache.set(mem_count, req_count)
 
         post_objs = []
 
